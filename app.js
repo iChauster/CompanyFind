@@ -74,7 +74,7 @@ fs.createReadStream("data.csv")
   .on("end", function(){
     console.log("done");
     console.log(companies);
-    //Let's start searching for companies : 
+    //Let's start searching for companies : if you are banned, you may want to manipulate the second parameter (currently zero), and store the gathered data globally.
     checkGoog(companies, 0);
   });
 
@@ -104,7 +104,7 @@ function start(company, callback){
 //This should have been an array of random proxies, but again, they are very hard to find. If given a good proxy API, it would be a good idea to randomized requests to ease server load.
 var prox = proxyArray[Math.floor(Math.random()*proxyArray.length)];
 
-//Here it is in action - npm-google is used to perform a company search.
+//Here it is in action - npm-google is used to perform a company search. It would be wise in the future to randomize the proxy the request is going through to avoid bans. This is configurable in the API.
 google(company, function (err, res){
   if (err) console.error(err)
   /*
@@ -118,7 +118,7 @@ google(company, function (err, res){
     very good google search. (not using an API, as close to normal search as we get).
 
     Implementing multiple links would be easy and would only involve changing the current links Array from [link] to [[links, links]].
-  
+
   */
   links.push(res.links[0].href)
   miniDescription.push(res.links[0].description)
