@@ -74,19 +74,23 @@ fs.createReadStream("data.csv")
   .on("end", function(){
     console.log("done");
     console.log(companies);
+    //Let's start searching for companies : 
     checkGoog(companies, 0);
   });
 
+//Recursive function -> you can rate limit this. Set the wait time to 23 seconds in order to avoid IP bans.
 function checkGoog(companyList, position){
   if(position < companyList.length){
     start(companyList[position], function(){
       position ++;
       console.log("Onto the next company, " + companyList[position] + " ... ")
+      //The wait time below is 0 seconds, but can be changed to avoid detection.
       setTimeout(function(){checkGoog(companyList,position)},0);
       console.log(links)
       console.log(miniDescription)
     })
   }else{
+    //Once we're done, let's write everything.
     console.log(position);
     writeToNewCSV(csvArray)
   }
@@ -96,11 +100,26 @@ function checkGoog(companyList, position){
 94.23.157.1:8080
 */
 function start(company, callback){
+
+//This should have been an array of random proxies, but again, they are very hard to find. If given a good proxy API, it would be a good idea to randomized requests to ease server load.
 var prox = proxyArray[Math.floor(Math.random()*proxyArray.length)];
 
-//c7d7556c-db78-4d37-b2b4-b34f8c71c541
+//Here it is in action - npm-google is used to perform a company search.
 google(company, function (err, res){
   if (err) console.error(err)
+  /*
+    Here, we only take the first link and the general description. 
+    However, you can extend this functionality, simply by adding
+      
+      res.links[1].href
+      res.links[2].href
+
+    etc. etc. These will add additional links. However for the ease of concatenating arrays I just added the first link, which is usually the most relevant, especially with our 
+    very good google search. (not using an API, as close to normal search as we get).
+
+    Implementing multiple links would be easy and would only involve changing the current links Array from [link] to [[links, links]].
+  
+  */
   links.push(res.links[0].href)
   miniDescription.push(res.links[0].description)
   callback();
@@ -130,6 +149,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
+//Writing to a NEW CSV - we write two here, one for the BONUS (including description and url), and another for general output.
 function writeToNewCSV(array){
   console.log(array);
   var csvStream = csv.createWriteStream({headers:true}),
@@ -147,6 +167,7 @@ function writeToNewCSV(array){
   for (obj in csvArray){
     var a = csvArray[obj];
     console.log(a);
+    //lets not try to go out of bounds... and yes, we can write to these streams simultaneously.
     if(obj < links.length){
       a.push(links[obj]);
       excsvStream.write([links[obj],miniDescription[obj]])

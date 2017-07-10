@@ -1,3 +1,5 @@
+This is just some sample data so you can see how it is ordered.
+
 var current = [ 'URL','http://www.texplast.co.ke/',
   'https://www.kenyaplex.com/business-directory/88962-rift-valley-bottlers-ltd-eldoret.aspx',
   'https://www.fuzu.com/company/kilifi-plantations-limited',
@@ -2348,7 +2350,7 @@ var ret = [ 'Descriptions','Texplast Industries Ltd., a private limited company 
   'Polypipes Limited (Pipe Division). The Company is the largest PVC pipe \nmanufacturer in East Africa. It has state of art manufacturing facility in Limuru and \nmakes ...',
   'RT @EatOutKenya: For our 1st course we\'re pairing Viceroy 10 with roasted \npumpkin soup. #Viceroy10 #SoGood https://t.co/uASen3dVnU https… KWAL 2 ...',
   'Lamu Youth Alliance, Lamu, Kenya. 1.2K likes. Lamu Youth Alliance was formed \nthrough the need to unite youth, to speak up, pursue lasting solution and...',
-  'home; About goldrock · duty-free · Leather · ☕   Coffee · Communications · \nContact. Welcome to GoldRock. GoldRock International Ent Co.(K)Ltd. ￼. Made \non a ...',
+  'home; About goldrock · duty-free · Leather · ☕   Coffee · Communications · \nContact. Welcome to GoldRock. GoldRock International Ent Co.(K)Ltd. . Made \non a ...',
   'AUA Industria has successfully deployed various security systems for the ... AUA \nhas been the chosen security services provider for Kenya Airways since 2009.',
   'General Industries, started in 1972, is one of the largest manufacturers of eco-friendly paper cores and composite canisters in East Africa.\n ... We specialise in the manufacturing of uPVC pressure pipes, Electric conduit pipes, Drainage pipes, Waste pipes, PPR pipes, HDPE pipes and ...',
   'Educational Scientific & Technical Equipment Company Ltd (ESTEC LTD) is an \nindependent, privately owned company, established in 1981 dealing in supply, ...',
