@@ -55,9 +55,11 @@ gettingProxies.once('end', function() {
 var proxyArray = [];
 var links = [];
 var miniDescription = [];
-// `gettingProxies` is an event emitter object.
 var csvArray = [];
 var companies = [];
+
+//Store the original CSV Data in csvArray
+
 fs.createReadStream("data.csv")
   .pipe(csv())
   .on("data", function(data){
